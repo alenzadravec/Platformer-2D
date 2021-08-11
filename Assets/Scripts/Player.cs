@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0)
+        if (Input.GetKey(KeyCode.UpArrow) && rb.velocity.y==0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -45,18 +45,27 @@ public class Player : MonoBehaviour
         {
             sr.flipX = true;
             animator.SetBool("isRunning", true);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isJumping", false);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             sr.flipX = false;
             animator.SetBool("isRunning", true);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isJumping", false);
         }
-        else 
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (rb.velocity.x==0f)
-            {
-                animator.SetBool("isRunning", false);
-            }
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isIdle", false);
+        }
+        if (!(Input.GetKey(KeyCode.UpArrow)) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.Space)) 
+        {
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", false);
         }
         #endregion
 
@@ -87,5 +96,21 @@ public class Player : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().velocity = Vector2.right * shootSpeed;
             Destroy(newBullet, bulletLife);
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "ground")
+        {
+            animator.SetBool("isGrounded", true);
+        }
+        else
+        {
+            animator.SetBool("isGrounded", false);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        animator.SetBool("isGrounded", false);
     }
 }
