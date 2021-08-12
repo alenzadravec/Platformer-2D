@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float shootSpeed;
     [SerializeField] float bulletLife;
+    [SerializeField] float timeBetweenShots;
+    private bool isShotting;
 
     [SerializeField] Transform positionLeft;
     [SerializeField] Transform positionRight;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isShotting = false;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -38,9 +41,9 @@ public class Player : MonoBehaviour
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharRun")) //prevent from shooting while running
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isShotting)
             {
-                Shoot();
+                StartCoroutine("Shoot");
             }
         }
 
@@ -76,7 +79,6 @@ public class Player : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
         #endregion
-
     }
     private void FixedUpdate()
     {
@@ -88,9 +90,10 @@ public class Player : MonoBehaviour
         Debug.Log("Kill player");
     }
 
-    public void Shoot() 
+    public IEnumerator Shoot() 
     {
         Debug.Log("Shoot");
+        isShotting = true;
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharJump")) // to prevent triggering shooting animation after jump
         {
@@ -109,6 +112,8 @@ public class Player : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().velocity = Vector2.right * shootSpeed;
             Destroy(newBullet, bulletLife);
         }
+        yield return new WaitForSeconds(timeBetweenShots);
+        isShotting = false;
     }
 
     private void OnCollisionStay2D(Collision2D other)
