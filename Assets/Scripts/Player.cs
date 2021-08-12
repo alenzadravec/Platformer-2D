@@ -29,21 +29,26 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKey(KeyCode.UpArrow) && rb.velocity.y==0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         movement = new Vector2(Input.GetAxis("Horizontal"),0f);
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharRun")) //prevent from shooting while running
         {
-            Shoot();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot();
+            }
         }
 
         #region Animation
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             sr.flipX = true;
+            animator.ResetTrigger("Shoot"); //putting it to false so animation cannot be triggered before other action and be player after finishing it
             animator.SetBool("isRunning", true);
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", false);
@@ -51,18 +56,21 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             sr.flipX = false;
+            animator.ResetTrigger("Shoot");
             animator.SetBool("isRunning", true);
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", false);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            animator.ResetTrigger("Shoot");
             animator.SetBool("isRunning", false);
             animator.SetBool("isJumping", true);
             animator.SetBool("isIdle", false);
         }
         if (!(Input.GetKey(KeyCode.UpArrow)) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.Space)) 
         {
+            animator.ResetTrigger("Shoot");
             animator.SetBool("isIdle", true);
             animator.SetBool("isRunning", false);
             animator.SetBool("isJumping", false);
@@ -83,6 +91,11 @@ public class Player : MonoBehaviour
     public void Shoot() 
     {
         Debug.Log("Shoot");
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharJump")) // to prevent triggering shooting animation after jump
+        {
+            animator.SetTrigger("Shoot");
+        }
 
         if (sr.flipX)
         {
