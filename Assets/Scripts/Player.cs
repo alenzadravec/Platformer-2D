@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform positionRight;
     [SerializeField] GameObject bullet;
 
+    AudioSource audio;
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator animator;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         isShotting = false;
+        audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -88,11 +90,13 @@ public class Player : MonoBehaviour
     public void KillPlayer() 
     {
         Debug.Log("Kill player");
+        FindObjectOfType<LevelLoader>().SetLoseTrue();
     }
 
     public IEnumerator Shoot() 
     {
         Debug.Log("Shoot");
+        audio.PlayOneShot(audio.GetComponent<AudioSource>().clip);
         isShotting = true;
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharJump")) // to prevent triggering shooting animation after jump
