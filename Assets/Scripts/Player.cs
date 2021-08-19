@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.UpArrow) && rb.velocity.y==0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -66,12 +66,17 @@ public class Player : MonoBehaviour
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", false);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && animator.GetBool("isGrounded"))
         {
             animator.ResetTrigger("Shoot");
             animator.SetBool("isRunning", false);
             animator.SetBool("isJumping", true);
             animator.SetBool("isIdle", false);
+        } 
+        else if (Input.GetKey(KeyCode.UpArrow) && !animator.GetBool("isGrounded")) 
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isIdle", true);
         }
         if (!(Input.GetKey(KeyCode.UpArrow)) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.Space)) 
         {
