@@ -12,6 +12,8 @@ public class DamageDealer : MonoBehaviour
         {
             other.gameObject.GetComponent<DamageTaker>().SetDamage(damageAmount);
 
+            Debug.Log("Demed");
+
             if (other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 0f)
             {
                 Destroy(other.gameObject);
