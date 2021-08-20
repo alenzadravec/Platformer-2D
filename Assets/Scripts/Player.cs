@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     [SerializeField] float shootSpeed;
     [SerializeField] float bulletLife;
     [SerializeField] float timeBetweenShots;
-    private bool isShotting;
 
     [SerializeField] Transform positionLeft;
     [SerializeField] Transform positionRight;
     [SerializeField] GameObject bullet;
+
+    private bool isShotting;
+    private bool upArrowEnabled;
 
     AudioSource audio;
     Rigidbody2D rb;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         isShotting = false;
+        upArrowEnabled = true;
         audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -35,7 +38,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0 && upArrowEnabled)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -139,5 +142,18 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         animator.SetBool("isGrounded", false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "wall")
+        {
+            Debug.Log("Wall");
+            upArrowEnabled = false;
+        }
+        else 
+        {
+            upArrowEnabled = true;
+        }
     }
 }
