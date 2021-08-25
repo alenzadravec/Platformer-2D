@@ -37,20 +37,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        #region Movement
         if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0 && upArrowEnabled)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         movement = new Vector2(Input.GetAxis("Horizontal"),0f);
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharRun")) //prevent from shooting while running
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharRun")) //prevention from shooting while running
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isShotting)
             {
                 StartCoroutine("Shoot");
             }
         }
+        #endregion
 
         #region Animation
         if (Input.GetKey(KeyCode.LeftArrow))

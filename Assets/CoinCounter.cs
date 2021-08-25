@@ -29,7 +29,7 @@ public class CoinCounter : MonoBehaviour
 
         if (coinAmount == coinsForFullHealth) 
         {
-            //set player health to initial amount
+            GameObject.FindGameObjectWithTag("Player").GetComponent<DamageTaker>().ResetHealth();
         }
     }
 }

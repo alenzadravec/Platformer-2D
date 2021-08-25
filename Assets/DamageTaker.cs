@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageTaker : MonoBehaviour
 {
     [SerializeField] float health;
+    [SerializeField] float startingHealthAmount;
 
     public void SetDamage(float damageAmount) 
     {
@@ -14,5 +15,10 @@ public class DamageTaker : MonoBehaviour
     public float GetCurrentHealthAmount() 
     {
         return health;
+    }
+
+    public void ResetHealth() 
+    {
+        this.health = startingHealthAmount;
     }
 }
