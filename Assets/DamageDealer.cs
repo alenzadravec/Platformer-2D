@@ -13,22 +13,25 @@ public class DamageDealer : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<DamageTaker>())
+        if (other.gameObject.tag != gameObject.tag) 
         {
-            other.gameObject.GetComponent<DamageTaker>().SetDamage(damageAmount);
-
-            Debug.Log("Demed"+ other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount());
-
-            if (other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 0f)
+            if (other.gameObject.GetComponent<DamageTaker>())
             {
-                Debug.Log(other.gameObject.name + "is killed");
-                effect = other.gameObject.GetComponent<DamageDealer>().GetEffect();
+                other.gameObject.GetComponent<DamageTaker>().SetDamage(damageAmount);
 
-                if (effect) 
+                Debug.Log("Demed" + other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount());
+
+                if (other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 0f)
                 {
-                    GameObject effect = Instantiate(this.effect, other.transform.localPosition, transform.rotation);
+                    Debug.Log(other.gameObject.name + "is killed");
+                    effect = other.gameObject.GetComponent<DamageDealer>().GetEffect();
+
+                    if (effect)
+                    {
+                        GameObject effect = Instantiate(this.effect, other.transform.localPosition, transform.rotation);
+                    }
+                    Destroy(other.gameObject);
                 }
-                Destroy(other.gameObject);
             }
         }
     }
