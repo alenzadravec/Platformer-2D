@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class DamageTaker : MonoBehaviour
 {
-    [SerializeField] float health;
+    [SerializeField] float health; // only serialized for debugging purposes
     [SerializeField] float startingHealthAmount;
+
+    private void Start()
+    {
+        health = startingHealthAmount;
+    }
 
     public void SetDamage(float damageAmount) 
     {
