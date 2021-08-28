@@ -24,7 +24,10 @@ public class DamageDealer : MonoBehaviour
                 if (other.gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 0f)
                 {
                     Debug.Log(other.gameObject.name + "is killed");
-                    effect = other.gameObject.GetComponent<DamageDealer>().GetEffect();
+                    if (other.gameObject.GetComponent<DamageDealer>())
+                    {
+                        effect = other.gameObject.GetComponent<DamageDealer>().GetEffect();
+                    }
 
                     if (effect)
                     {
