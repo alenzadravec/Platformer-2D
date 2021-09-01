@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     private bool isShotting;
     private bool upArrowEnabled;
+    private static List<GameObject> items = new List<GameObject>();
 
     AudioSource audio;
     Rigidbody2D rb;
@@ -74,7 +75,13 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isShotting)
             {
-                StartCoroutine("Shoot");
+                for (int i = 0; i < items.Count; i++) 
+                {
+                    if (items[i].tag == "pistol") 
+                    {
+                        StartCoroutine("Shoot");
+                    }
+                } //if we collected pistol item
             }
         }
         #endregion
@@ -189,6 +196,15 @@ public class Player : MonoBehaviour
         else 
         {
             upArrowEnabled = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "pistol")
+        {
+            items.Add(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 }
