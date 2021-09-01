@@ -133,6 +133,10 @@ MonoBehaviour:
   positionLeft: {fileID: 2408786281829695514}
   positionRight: {fileID: 2408786282053920918}
   bullet: {fileID: 3552342213621651296, guid: 9d2310e0f9b008c4abf4cb3cf6136aea, type: 3}
+  background: {fileID: 0}
+  gun: {fileID: 8300000, guid: f0c184a9f6fae8a49be4d2ae08ad2ab6, type: 3}
+  au: {fileID: 0}
+  walking: {fileID: 0}
 --- !u!114 &2408786280071204006
 MonoBehaviour:
   m_ObjectHideFlags: 0

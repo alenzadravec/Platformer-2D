@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] SpriteRenderer background;
 
+    [Header("Audioclips")]
+    [SerializeField] AudioClip gun;
+    [SerializeField] AudioClip au;
+    [SerializeField] AudioClip walking;
+
     private bool isShotting;
     private bool upArrowEnabled;
 
@@ -38,6 +43,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.GetComponent<DamageTaker>().OnHealthChange()) 
+        {
+            audio.PlayOneShot(au);
+        } //Make auch sound if health gets lower
+
+        #region HealthBGChange
         if (gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 50 && gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount()>=25)
         {
             background.color = new Color32(255, 148, 148, 255);//light red
@@ -50,6 +61,7 @@ public class Player : MonoBehaviour
         {
             background.color = new Color32(255, 255, 255, 255);//default white
         }
+        #endregion
 
         #region Movement
         if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0 && upArrowEnabled)
@@ -119,7 +131,7 @@ public class Player : MonoBehaviour
     public IEnumerator Shoot() 
     {
         Debug.Log("Shoot");
-        audio.PlayOneShot(audio.GetComponent<AudioSource>().clip);
+        audio.PlayOneShot(gun);
         isShotting = true;
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("MainCharJump")) // to prevent triggering shooting animation after jump
@@ -141,6 +153,11 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(timeBetweenShots);
         isShotting = false;
+    }
+
+    public void WalkingSoundTrigger() 
+    {
+        audio.PlayOneShot(walking);
     }
 
     private void OnCollisionStay2D(Collision2D other)

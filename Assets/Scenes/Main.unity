@@ -56929,6 +56929,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.border.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137080448455847494, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
+      propertyPath: m_Volume
+      value: 0.675
+      objectReference: {fileID: 0}
     - target: {fileID: 137080448455847495, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -56991,7 +56995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137080448455847499, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 137080448900500906, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57099,6 +57103,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2408786280071204001, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
+      propertyPath: Priority
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 2408786280071204002, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -57143,6 +57151,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2408786280071204003, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
+      propertyPath: au
+      value: 
+      objectReference: {fileID: 8300000, guid: ad558a49d529e384682574f9a79082d7, type: 3}
+    - target: {fileID: 2408786280071204003, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
+      propertyPath: walking
+      value: 
+      objectReference: {fileID: 8300000, guid: 937ae4400af00af42a2a204c0f113d1b, type: 3}
     - target: {fileID: 2408786280071204003, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
       propertyPath: background
       value: 
