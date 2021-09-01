@@ -157,7 +157,10 @@ public class Player : MonoBehaviour
 
     public void WalkingSoundTrigger() 
     {
-        audio.PlayOneShot(walking);
+        if (animator.GetBool("isGrounded")) 
+        {
+            audio.PlayOneShot(walking);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)
