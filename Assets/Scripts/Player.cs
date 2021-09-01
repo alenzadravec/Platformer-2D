@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform positionLeft;
     [SerializeField] Transform positionRight;
     [SerializeField] GameObject bullet;
+    [SerializeField] SpriteRenderer background;
 
     private bool isShotting;
     private bool upArrowEnabled;
@@ -37,6 +38,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() <= 50 && gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount()>=25)
+        {
+            background.color = new Color32(255, 148, 148, 255);//light red
+        }
+        else if (gameObject.GetComponent<DamageTaker>().GetCurrentHealthAmount() < 25)
+        {
+            background.color = new Color32(255, 71, 71, 255); //red
+        }
+        else 
+        {
+            background.color = new Color32(255, 255, 255, 255);//default white
+        }
+
         #region Movement
         if (Input.GetKeyDown(KeyCode.UpArrow) && rb.velocity.y==0 && upArrowEnabled)
         {

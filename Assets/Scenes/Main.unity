@@ -56989,6 +56989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy2
       objectReference: {fileID: 0}
+    - target: {fileID: 137080448455847499, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 137080448900500906, guid: dbf136c5fc71b5b48b55f340ffdf5eb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.46
@@ -57084,7 +57088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004790122747528811, guid: b3c4ead4b7779d04c9842b798494fab7, type: 3}
       propertyPath: changeMovement
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3c4ead4b7779d04c9842b798494fab7, type: 3}
@@ -57139,6 +57143,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2408786280071204003, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 1227561977}
     - target: {fileID: 2408786280071204014, guid: f2b84af13808b324db7ac16e3791a4a7, type: 3}
       propertyPath: m_Name
       value: Player
