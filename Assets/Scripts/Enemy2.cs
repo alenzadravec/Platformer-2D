@@ -19,7 +19,7 @@ public class Enemy2 : MonoBehaviour
 
     public void Shoot() 
     {
-//        Debug.Log("Shoot");
+        //Debug.Log("Shoot");
         audio.PlayOneShot(audio.GetComponent<AudioSource>().clip);
 
         GameObject newBullet = Instantiate(bullet, positionLeft.position, bulletAngle.localRotation);
