@@ -135,8 +135,8 @@ MonoBehaviour:
   bullet: {fileID: 3552342213621651296, guid: 9d2310e0f9b008c4abf4cb3cf6136aea, type: 3}
   background: {fileID: 0}
   gun: {fileID: 8300000, guid: f0c184a9f6fae8a49be4d2ae08ad2ab6, type: 3}
-  au: {fileID: 0}
-  walking: {fileID: 0}
+  au: {fileID: 8300000, guid: ad558a49d529e384682574f9a79082d7, type: 3}
+  walking: {fileID: 8300000, guid: 937ae4400af00af42a2a204c0f113d1b, type: 3}
 --- !u!114 &2408786280071204006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -294,7 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5858f561e45fc094599f3faf8173c459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0
+  damageAmount: 20
+  startEffect: {fileID: 0}
   effect: {fileID: 0}
 --- !u!1 &2408786281829695493
 GameObject:
@@ -371,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  startEffect: {fileID: 0}
   effect: {fileID: 0}
 --- !u!61 &2408786282030753338
 BoxCollider2D:

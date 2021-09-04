@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  startEffect: {fileID: 3642432954677424113, guid: 01cde65cd4cb27f4b8463330abeb9c26, type: 3}
   effect: {fileID: 3642432954677424113, guid: 01cde65cd4cb27f4b8463330abeb9c26, type: 3}
 --- !u!50 &1004790122747528805
 Rigidbody2D:
@@ -194,6 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb7f32a39498f349bbbc32fda0362d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMovement: 0
+  changeMovement: 1
   waitingSeconds: 4
-  movementSpeed: 0
+  movementSpeed: 3

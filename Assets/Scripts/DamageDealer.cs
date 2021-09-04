@@ -5,11 +5,11 @@ using UnityEngine;
 public class DamageDealer : MonoBehaviour
 {
     [SerializeField] float damageAmount;
+    [SerializeField] GameObject startEffect;
     [SerializeField] GameObject effect;
-
     private void Start()
     {
-        Debug.Log(effect);
+
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -33,6 +33,7 @@ public class DamageDealer : MonoBehaviour
                     {
                         GameObject effect = Instantiate(this.effect, other.transform.localPosition, transform.rotation);
                     }
+                    effect = startEffect;
                     Destroy(other.gameObject);
                 }
             }
