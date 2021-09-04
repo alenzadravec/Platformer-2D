@@ -6,13 +6,13 @@ public class Enemy1 : MonoBehaviour
 {
     [Header("Movement setup bool")]
     [Tooltip("If false it moves one side, if true it moves from side to side depending on seconds variable below")]
-    [SerializeField] bool changeMovement;
-    [SerializeField] float waitingSeconds;
-    [SerializeField] float movementSpeed;
-    private bool changeSides;
-    private float secondsKeeper;
-    Rigidbody2D rb;
-    SpriteRenderer sr;
+    [SerializeField] protected bool changeMovement;
+    [SerializeField] protected float waitingSeconds;
+    [SerializeField] protected float movementSpeed;
+    protected bool changeSides;
+    protected float secondsKeeper;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +42,7 @@ public class Enemy1 : MonoBehaviour
         rb.velocity = new Vector2(-movementSpeed, rb.velocity.y);
     }
 
-    void MovementTwoSides() 
+    protected void MovementTwoSides() 
     {
         if (!changeSides)
         {
@@ -63,7 +63,7 @@ public class Enemy1 : MonoBehaviour
         }
     }
 
-    private void ChangeSides() 
+    protected void ChangeSides() 
     {
         if (changeSides)
         {
