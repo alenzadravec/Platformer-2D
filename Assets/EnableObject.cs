@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class EnableObject : MonoBehaviour
 {
-    [SerializeField] GameObject objectToEnable;
+    [SerializeField] List<GameObject> objectsToEnable = new List<GameObject>();
 
     private void Start()
     {
-        objectToEnable.SetActive(false);
+        for (int i = 0; i < objectsToEnable.Count; i++) 
+        {
+            objectsToEnable[i].SetActive(false);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player") 
         {
-            objectToEnable.SetActive(true);
+            for (int i = 0; i < objectsToEnable.Count; i++)
+            {
+                objectsToEnable[i].SetActive(true);
+            }
         }
     }
 }
