@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip walking;
 
     private bool isShotting;
-    private bool upArrowEnabled;
+    [SerializeField]private bool upArrowEnabled;
     private static List<GameObject> items = new List<GameObject>();
 
     AudioSource audio;
@@ -183,7 +183,15 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        animator.SetBool("isGrounded", false);
+        if (other.gameObject.tag == "ground")
+        {
+            animator.SetBool("isGrounded", false);
+        }
+
+        if (other.gameObject.tag == "wall") 
+        {
+            upArrowEnabled = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -192,10 +200,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Wall");
             upArrowEnabled = false;
-        }
-        else 
-        {
-            upArrowEnabled = true;
         }
     }
 
