@@ -9,6 +9,9 @@ TagManager:
   - enemy
   - pistol
   - thought
+  - magnifier
+  - handcuffs
+  - spyglass
   layers:
   - Default
   - TransparentFX

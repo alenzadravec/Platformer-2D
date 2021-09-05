@@ -62,4 +62,8 @@ public class LevelLoader : MonoBehaviour
     {
         loseScreen = true;
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -24,9 +24,16 @@ public class Thoughts : MonoBehaviour
     {
         if (other.gameObject.tag == "thought") 
         {
-            thoughtsBox.text = thoughtsTriggers[thoughtsCounter];
-            other.gameObject.SetActive(false);
-            thoughtsCounter++;
+            if (FindObjectOfType<Player>().GetItemsList().Count == 4) // YOU WIN!
+            {
+                thoughtsBox.text = thoughtsTriggers[thoughtsTriggers.Count];
+            }
+            else
+            {
+                thoughtsBox.text = thoughtsTriggers[thoughtsCounter];
+                other.gameObject.SetActive(false);
+                thoughtsCounter++;
+            }
         }
     }
 }

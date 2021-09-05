@@ -123,6 +123,8 @@ public class Player : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
         #endregion
+
+
     }
     private void FixedUpdate()
     {
@@ -210,5 +212,29 @@ public class Player : MonoBehaviour
             items.Add(other.gameObject);
             other.gameObject.SetActive(false);
         }
+
+        if (other.gameObject.tag == "magnifier")
+        {
+            items.Add(other.gameObject);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "handcuffs")
+        {
+            items.Add(other.gameObject);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "spyglass")
+        {
+            items.Add(other.gameObject);
+            other.gameObject.SetActive(false);
+        }
+
+    }
+
+    public List<GameObject> GetItemsList() 
+    {
+        return items;
     }
 }
