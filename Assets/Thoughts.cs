@@ -28,9 +28,12 @@ public class Thoughts : MonoBehaviour
             {
                 thoughtsBox.text = thoughtsTriggers[thoughtsTriggers.Count];
             }
+            else
+            {
                 thoughtsBox.text = thoughtsTriggers[thoughtsCounter];
                 other.gameObject.SetActive(false);
                 thoughtsCounter++;
+            }
         }
     }
 }
