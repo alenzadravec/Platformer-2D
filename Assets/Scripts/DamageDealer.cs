@@ -7,10 +7,7 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] float damageAmount;
     [SerializeField] GameObject startEffect;
     [SerializeField] GameObject effect;
-    private void Start()
-    {
 
-    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag != gameObject.tag) 
